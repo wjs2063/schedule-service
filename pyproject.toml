@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "schedule-service"
+version = "0.1.0"
+description = "schedule_service"
+authors = ["Jaehyeon <jahy5352@naver.com>"]
+readme = "README.md"
+packages = [{include = "schedule_service"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["all"], version = "^0.115.12"}
+tortoise-orm = {extras = ["asyncpg"], version = "^0.25.0"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
