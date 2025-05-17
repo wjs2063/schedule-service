@@ -1,6 +1,6 @@
 
 
-TORTOISE_ORM = {
+RDB_CONFIG = {
     "connections": {
         "default": {
             "engine": "tortoise.backends.asyncpg",
@@ -25,12 +25,12 @@ TORTOISE_ORM = {
     },
     "apps": {
         "models": {
-            "models": ["app.models.core_model"],
+            "models": ["src.auth.domain.user.model"],
             "default_connection": "default"
         },
-        "token_models": {
-            "models": ["app.models.audit_model"],
-            "default_connection": "audit"
-        }
+        # "token_models": {
+        #     "models": ["app.models.audit_model"],
+        #     "default_connection": "token"
+        # }
     }
 }
