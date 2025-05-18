@@ -30,3 +30,18 @@ class AuthService:
         refreshed = await refresh_access_token(user.refresh_token)
         await UserRepository.update_token(user, refreshed["access_token"], time.time() + int(refreshed["expires_in"]))
         return refreshed["access_token"]
+
+
+
+    @staticmethod
+    async def get_access_token_from_refresh_token(refresh_token: str) -> str:
+        user = await UserRepository.get_user_by_refresh_token(refresh_token)
+        if not user:
+            raise ValueError("Invalid refresh token")
+
+        if user.expires_at > time.time():
+            return user.access_token
+
+        refreshed = await refresh_access_token(refresh_token)
+        await UserRepository.update_token(user, refreshed["access_token"], time.time() + int(refreshed["expires_in"]))
+        return refreshed["access_token"]

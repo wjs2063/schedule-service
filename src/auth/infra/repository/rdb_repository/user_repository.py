@@ -23,3 +23,7 @@ class UserRepository:
         user.access_token = access_token
         user.expires_at = expires_at
         await user.save()
+
+    @staticmethod
+    async def get_user_by_refresh_token(refresh_token: str) -> Optional[User]:
+        return await User.get_or_none(refresh_token=refresh_token)
